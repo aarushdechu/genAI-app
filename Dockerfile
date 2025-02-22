@@ -1,20 +1,23 @@
-# Use an official lightweight Python base image
+# Use an official Python runtime
 FROM python:3.11
 
 # Set the working directory
 WORKDIR /app
 
-# Copy the requirements file into the container
+# Copy requirements file first (for caching optimization)
 COPY requirements.txt /app/
 
-# Install dependencies
+# Install NumPy & Pandas first (to prevent version conflicts)
+RUN pip install --no-cache-dir numpy==1.23.5 pandas==1.5.3
+
+# Install remaining dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the Streamlit app code into the container
-COPY app.py /app/
+# Copy the entire project
+COPY . /app
 
-# Expose the port that Streamlit uses
-EXPOSE 8501
+# Expose Flask's port
+EXPOSE 5000
 
-# Command to run the Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Run the Flask app
+CMD ["python", "app.py"]

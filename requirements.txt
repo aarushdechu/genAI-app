@@ -1,3 +1,6 @@
-streamlit
+Flask
 requests
 ibm-watsonx-ai
+ibm-watson-machine-learning
+numpy==1.23.5
+pandas==1.5.3
