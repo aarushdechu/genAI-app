@@ -1,2 +1,4 @@
-# My GenAI App
-This is my first **GenAI** app!!! 
+# A Generative AI Application
+
+This is an generative AI or **GenAI** application. 
+I used Meta's Llama models for this project.
